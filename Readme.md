@@ -6,6 +6,8 @@
 
 泰拉瑞亚mod文件汉化使用.lang文件，这个软件使用[tModLocalizer](https://github.com/mistzzt/tmodloader-mod-localizer)制作。
 
+使用了 **Microsoft .Net Framework v4.5.1**。请确保安装了这个或更高版本的 Microsoft .Net Framework。详情请见[巨硬官网](https://microsoft.com)。
+
 ## Download
 
 [下载地址](https://github.com/Shimogawa/Cs2Lang/releases)
