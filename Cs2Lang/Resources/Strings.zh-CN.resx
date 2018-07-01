@@ -123,11 +123,21 @@
   <data name="FileNotFound" xml:space="preserve">
     <value>文件未找到：{0}</value>
   </data>
+  <data name="Output" xml:space="preserve">
+    <value>输出：</value>
+  </data>
+  <data name="PathArgument" xml:space="preserve">
+    <value>Tmod文件与mod命名空间名称</value>
+  </data>
+  <data name="PathArgumentDetail" xml:space="preserve">
+    <value>格式：[Tmod文件路径] [mod命名空间名称（无空格）]</value>
+  </data>
   <data name="ProcessKilled" xml:space="preserve">
     <value>已强行终止外部程序的运行！可能发生错误！解包失败！</value>
   </data>
   <data name="ProgramDetail" xml:space="preserve">
-    <value>关于这个软件
+    <value>
+关于这个软件
 -----------------------------
 核心使用了Mod.Localizer v0.2。保证这个文件夹与此程序在一起。
 这个程序是对ModLocalizer的包装，将生成的.json文件转换为.lang文件。</value>

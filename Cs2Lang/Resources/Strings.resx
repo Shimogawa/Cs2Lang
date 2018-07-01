@@ -123,11 +123,21 @@
   <data name="FileNotFound" xml:space="preserve">
     <value>Important file not found: {0}</value>
   </data>
+  <data name="Output" xml:space="preserve">
+    <value>Output: </value>
+  </data>
+  <data name="PathArgument" xml:space="preserve">
+    <value>Tmod file path and mod's namespace name.</value>
+  </data>
+  <data name="PathArgumentDetail" xml:space="preserve">
+    <value>Syntax: tmod_path mod_namespace(without whitespace)</value>
+  </data>
   <data name="ProcessKilled" xml:space="preserve">
     <value>Killed process... Error reported.</value>
   </data>
   <data name="ProgramDetail" xml:space="preserve">
-    <value>Details
+    <value>
+Details
 -----------------------------
 Main core of this program is Mod.Localizer v0.2. Make sure this folder is here with the program.
 This program is a package for ModLocalizer which transfers .json files to .lang files.</value>

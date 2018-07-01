@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Text;
 using Cs2Lang.Resources;
@@ -52,18 +50,30 @@ namespace Cs2Lang
         {
             Dump();
             Convert();
+            CleanUp();
         }
 
         private void Dump()
         {
             var process = Process.Start(info);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Output: ");
+            Console.WriteLine(Strings.Output);
             Console.ResetColor();
             string str;
             while ((str = process.StandardOutput.ReadLine()) != null)
             {
-                Console.WriteLine(str);
+                //Console.WriteLine(str);
+                if (str.Contains("Fatal"))
+                {
+                    if (str.Contains("处理完毕"))
+                    {
+                        Console.WriteLine(str);
+                    }
+                    else
+                    {
+                        throw new Exception(Strings.ErrorInDump);
+                    }
+                }
             }
             process.WaitForExit(100000);
             if (!process.HasExited)
@@ -96,6 +106,8 @@ namespace Cs2Lang
                 {
                     foreach (var file in Directory.GetFiles(dir))
                     {
+                        if (!file.Contains("Items"))
+                            continue;
                         writer.WriteThisFile(file, TranslationTypes.Items);
                     }
                 }
@@ -115,6 +127,27 @@ namespace Cs2Lang
                 }
             }
             writer.Close();
+        }
+
+        private void CleanUp()
+        {
+            foreach (var file in Directory.GetFiles(executePath))
+            {
+                if (Path.GetExtension(file) == ".log")
+                    File.Delete(file);
+            }
+
+            foreach (var file in Directory.GetFiles(currentWorkingDir))
+            {
+                if (Path.GetFileNameWithoutExtension(file) == modNameSpace) 
+                    File.Delete(file);
+            }
+
+            foreach (var directory in Directory.GetDirectories(currentWorkingDir))
+            {
+                if (directory.Contains(modNameSpace))
+                    Directory.Delete(directory, true);
+            }
         }
     }
 }

@@ -79,6 +79,33 @@ namespace Cs2Lang.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Output:  的本地化字符串。
+        /// </summary>
+        internal static string Output {
+            get {
+                return ResourceManager.GetString("Output", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Tmod file path and mod&apos;s namespace name. 的本地化字符串。
+        /// </summary>
+        internal static string PathArgument {
+            get {
+                return ResourceManager.GetString("PathArgument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Syntax: tmod_path mod_namespace(without whitespace) 的本地化字符串。
+        /// </summary>
+        internal static string PathArgumentDetail {
+            get {
+                return ResourceManager.GetString("PathArgumentDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Killed process... Error reported. 的本地化字符串。
         /// </summary>
         internal static string ProcessKilled {
@@ -88,7 +115,8 @@ namespace Cs2Lang.Resources {
         }
         
         /// <summary>
-        ///   查找类似 Details
+        ///   查找类似 
+        ///Details
         ///-----------------------------
         ///Main core of this program is Mod.Localizer v0.2. Make sure this folder is here with the program.
         ///This program is a package for ModLocalizer which transfers .json files to .lang files. 的本地化字符串。
