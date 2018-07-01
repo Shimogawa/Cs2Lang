@@ -6,6 +6,10 @@
 
 泰拉瑞亚mod文件汉化使用.lang文件，这个软件使用[tModLocalizer](https://github.com/mistzzt/tmodloader-mod-localizer)制作。
 
+## Download
+
+[下载地址](https://github.com/Shimogawa/Cs2Lang/releases)
+
 ## Version info
 
 ### Version 0.3.2
