@@ -4,14 +4,14 @@
 
 ## About
 
-Ì©À­ÈğÑÇmodÎÄ¼şºº»¯Ê¹ÓÃ.langÎÄ¼ş£¬Õâ¸öÈí¼şÊ¹ÓÃ(tModLocalizer)[https://github.com/mistzzt/tmodloader-mod-localizer]ÖÆ×÷¡£
+æ³°æ‹‰ç‘äºšmodæ–‡ä»¶æ±‰åŒ–ä½¿ç”¨.langæ–‡ä»¶ï¼Œè¿™ä¸ªè½¯ä»¶ä½¿ç”¨[tModLocalizer](https://github.com/mistzzt/tmodloader-mod-localizer)åˆ¶ä½œã€‚
 
 ## Version info
 
 ### Version 0.3.2
 
- - Ìá¹©²»ÇåÀíÎÄ¼şÑ¡Ïî¡£
- - ¼õÉÙ²úÉúµÄ¿Õ°×ĞĞ
+ - æä¾›ä¸æ¸…ç†æ–‡ä»¶é€‰é¡¹ã€‚
+ - å‡å°‘äº§ç”Ÿçš„ç©ºç™½è¡Œ
 
 ### Version 0.3.1.7
 
@@ -25,4 +25,4 @@
 
 ## Credits
 
-¸ĞĞ»@mistzzt (mw)µÄtModLocalizer
+æ„Ÿè°¢ [@mistzzt(mw)](https://github.com/mistzzt)çš„tModLocalizer
