@@ -47,6 +47,7 @@ namespace Cs2Lang.Trash
                     writer.WriteLine($"BuffName.{typeName}={name}");
                     if (tip.Length != 0)
                         writer.WriteLine($"BuffDescription.{typeName}={tip}");
+                    writer.WriteLine();
                 }
                 else if (type == TranslationTypes.Items)
                 {
@@ -54,17 +55,21 @@ namespace Cs2Lang.Trash
                     writer.WriteLine($"ItemName.{typeName}={name}");
                     if (tip.Length != 0)
                         writer.WriteLine($"ItemToolTip.{typeName}={tip}");
+                    writer.WriteLine();
                 }
                 else if (type == TranslationTypes.NPCs)
                 {
                     writer.WriteLine($"NPCName.{typeName}={name}");
+                    writer.WriteLine();
                 }
                 else if (type == TranslationTypes.Tiles)
                 {
                     if (name.Length != 0)
+                    {
                         writer.WriteLine($"MapObject.{typeName}={name}");
+                        writer.WriteLine();
+                    }
                 }
-                writer.WriteLine();
             }
 
             // flush writer

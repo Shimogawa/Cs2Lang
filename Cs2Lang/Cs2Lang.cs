@@ -20,9 +20,12 @@ namespace Cs2Lang
         private ProcessStartInfo info;
         private string path;
 
-        public Cs2Lang(string path, string modNameSpace)
+        private bool needsCleanUp;
+
+        public Cs2Lang(string path, string modNameSpace, bool needsCleanUp = true)
         {
             this.modNameSpace = modNameSpace;
+            this.needsCleanUp = needsCleanUp;
             if (!File.Exists(executeFile))
             {
                 throw new FileNotFoundException(string.Format(Strings.FileNotFound, executeFile));
@@ -51,7 +54,8 @@ namespace Cs2Lang
         {
             Dump();
             Convert();
-            CleanUp();
+            if (needsCleanUp)
+                CleanUp();
         }
 
         private void Dump()
@@ -139,7 +143,8 @@ namespace Cs2Lang
 
             foreach (var file in Directory.GetFiles(currentWorkingDir))
             {
-                if (Path.GetFileNameWithoutExtension(file) == modNameSpace) 
+                if (Path.GetFileNameWithoutExtension(file) == modNameSpace &&
+                    (Path.GetExtension(file) == ".dll" || Path.GetExtension(file) == ".pdb"))
                     File.Delete(file);
             }
 

@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CleanupOption" xml:space="preserve">
+    <value>Stops cleaning up files that are not used.</value>
+  </data>
   <data name="ErrorInDump" xml:space="preserve">
     <value>Dump Error. Check files.</value>
   </data>
   <data name="FileNotFound" xml:space="preserve">
     <value>Important file not found: {0}</value>
+  </data>
+  <data name="NoCleanupMode" xml:space="preserve">
+    <value>Currently in no cleanup mode.</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Output: </value>

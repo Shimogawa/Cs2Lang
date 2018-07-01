@@ -61,6 +61,15 @@ namespace Cs2Lang.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Stops cleaning up files that are not used. 的本地化字符串。
+        /// </summary>
+        internal static string CleanupOption {
+            get {
+                return ResourceManager.GetString("CleanupOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Dump Error. Check files. 的本地化字符串。
         /// </summary>
         internal static string ErrorInDump {
@@ -75,6 +84,15 @@ namespace Cs2Lang.Resources {
         internal static string FileNotFound {
             get {
                 return ResourceManager.GetString("FileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Currently in no cleanup mode. 的本地化字符串。
+        /// </summary>
+        internal static string NoCleanupMode {
+            get {
+                return ResourceManager.GetString("NoCleanupMode", resourceCulture);
             }
         }
         
