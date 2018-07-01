@@ -127,7 +127,7 @@
     <value>Output: </value>
   </data>
   <data name="PathArgument" xml:space="preserve">
-    <value>Tmod file path and mod's namespace name.</value>
+    <value>Tmod file</value>
   </data>
   <data name="PathArgumentDetail" xml:space="preserve">
     <value>Syntax: tmod_path mod_namespace(without whitespace)</value>

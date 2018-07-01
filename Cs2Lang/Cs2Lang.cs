@@ -11,8 +11,8 @@ namespace Cs2Lang
     {
         private const string executeFile = @".\Mod.Localizer_0.2\Mod.Localizer.exe";
         private const string executePath = @".\Mod.Localizer_0.2\";
-        private string currentWorkingDir = Directory.GetCurrentDirectory();
-        private string langFile = ".\\en-US-{0}.lang";
+        private const string currentWorkingDir = @".\";
+        private const string langFile = ".\\en-US - {0}.lang";
 
         private string modNameSpace;
         private string jsonDir;
@@ -33,7 +33,7 @@ namespace Cs2Lang
                 throw new FileNotFoundException(string.Format(Strings.FileNotFound, path));
             }
             this.path = path;
-            info = new ProcessStartInfo()
+            info = new ProcessStartInfo
             {
                 FileName = executeFile,
                 Arguments = path,
@@ -42,7 +42,8 @@ namespace Cs2Lang
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 CreateNoWindow = true,
-                WindowStyle = ProcessWindowStyle.Hidden
+                WindowStyle = ProcessWindowStyle.Hidden,
+                StandardOutputEncoding = Encoding.UTF8
             };
         }
 
@@ -62,7 +63,6 @@ namespace Cs2Lang
             string str;
             while ((str = process.StandardOutput.ReadLine()) != null)
             {
-                //Console.WriteLine(str);
                 if (str.Contains("Fatal"))
                 {
                     if (str.Contains("处理完毕"))

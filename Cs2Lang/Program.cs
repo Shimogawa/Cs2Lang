@@ -12,9 +12,6 @@ namespace Cs2Lang
 
         static void Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.UTF8;
-            Console.OutputEncoding = Encoding.UTF8;
-
             if (args.Length == 0)
             {
                 args = new[] { "-h" };

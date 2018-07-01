@@ -88,7 +88,7 @@ namespace Cs2Lang.Resources {
         }
         
         /// <summary>
-        ///   查找类似 Tmod file path and mod&apos;s namespace name. 的本地化字符串。
+        ///   查找类似 Tmod file 的本地化字符串。
         /// </summary>
         internal static string PathArgument {
             get {

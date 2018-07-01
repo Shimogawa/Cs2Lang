@@ -39,7 +39,7 @@ namespace Cs2Lang.Trash
             {
                 typeName = obj["TypeName"].Value<string>();
                 name = obj["Name"].Value<string>();
-                if (name.Length == 0)
+                if (type != TranslationTypes.Tiles && name.Length == 0)
                     name = typeName;
                 if (type == TranslationTypes.Buffs)
                 {
@@ -61,7 +61,8 @@ namespace Cs2Lang.Trash
                 }
                 else if (type == TranslationTypes.Tiles)
                 {
-                    writer.WriteLine($"MapObject.{typeName}={name}");
+                    if (name.Length != 0)
+                        writer.WriteLine($"MapObject.{typeName}={name}");
                 }
                 writer.WriteLine();
             }
