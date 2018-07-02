@@ -123,8 +123,14 @@
   <data name="ErrorInDump" xml:space="preserve">
     <value>Dump Error. Check files.</value>
   </data>
+  <data name="FileCleanedUp" xml:space="preserve">
+    <value>Files cleaned up.</value>
+  </data>
   <data name="FileNotFound" xml:space="preserve">
     <value>Important file not found: {0}</value>
+  </data>
+  <data name="LogOption" xml:space="preserve">
+    <value>Does not delete the current log file created by ModLocalizer.</value>
   </data>
   <data name="NoCleanupMode" xml:space="preserve">
     <value>Currently in no cleanup mode.</value>

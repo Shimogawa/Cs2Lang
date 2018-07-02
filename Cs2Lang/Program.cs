@@ -11,6 +11,7 @@ namespace Cs2Lang
         private static string modName;
 
         private static bool needsCleanUp = true;
+        private static bool needsLog = false;
 
         static void Main(string[] args)
         {
@@ -26,7 +27,7 @@ namespace Cs2Lang
 
             var orig = Console.Title;
             Console.Title = "Cs2Lang - ModLocalizer";
-            var process = new Cs2Lang(modPath, modName, needsCleanUp);
+            var process = new Cs2Lang(modPath, modName, needsCleanUp, needsLog);
             process.Start();
             //Console.Title = orig;
         }
@@ -49,6 +50,7 @@ namespace Cs2Lang
             app.VersionOption("-v | --version", version.ToString(3), version.ToString(4));
 
             var cleanupOption = app.Option("-nc | --nocleanup", Strings.CleanupOption, CommandOptionType.NoValue);
+            var logOption = app.Option("-l | --log", Strings.LogOption, CommandOptionType.NoValue);
 
             var modFilePathArg = app.Argument(Strings.PathArgument, Strings.PathArgumentDetail, true);
 
@@ -61,9 +63,11 @@ namespace Cs2Lang
 
                 if (cleanupOption.HasValue())
                 {
-                    Console.WriteLine();
                     needsCleanUp = false;
                 }
+
+                if (logOption.HasValue())
+                    needsLog = true;
 
                 modPath = modFilePathArg.Values[0];
                 modName = modFilePathArg.Values[1];

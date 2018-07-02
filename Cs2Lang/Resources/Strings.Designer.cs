@@ -79,11 +79,29 @@ namespace Cs2Lang.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Files cleaned up. 的本地化字符串。
+        /// </summary>
+        internal static string FileCleanedUp {
+            get {
+                return ResourceManager.GetString("FileCleanedUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Important file not found: {0} 的本地化字符串。
         /// </summary>
         internal static string FileNotFound {
             get {
                 return ResourceManager.GetString("FileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Does not delete the current log file created by ModLocalizer. 的本地化字符串。
+        /// </summary>
+        internal static string LogOption {
+            get {
+                return ResourceManager.GetString("LogOption", resourceCulture);
             }
         }
         

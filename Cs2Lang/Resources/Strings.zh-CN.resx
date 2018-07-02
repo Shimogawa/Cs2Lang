@@ -123,8 +123,14 @@
   <data name="ErrorInDump" xml:space="preserve">
     <value>解包失败。检查文件异常。</value>
   </data>
+  <data name="FileCleanedUp" xml:space="preserve">
+    <value>清理文件完成。</value>
+  </data>
   <data name="FileNotFound" xml:space="preserve">
     <value>文件未找到：{0}</value>
+  </data>
+  <data name="LogOption" xml:space="preserve">
+    <value>将不删除当前ModLocalizer产生的log文件。</value>
   </data>
   <data name="NoCleanupMode" xml:space="preserve">
     <value>将不清理产生的文件。</value>

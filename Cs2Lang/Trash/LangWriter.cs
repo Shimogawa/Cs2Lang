@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Newtonsoft.Json.Linq;
 
 namespace Cs2Lang.Trash
@@ -20,6 +21,8 @@ namespace Cs2Lang.Trash
 
         public void WriteThisFile(string file, TranslationTypes type)
         {
+            // GetCommonThroughFile(file);
+
             writer.WriteLine();
             writer.WriteLine($"// {Path.GetFileNameWithoutExtension(file)}");
             writer.WriteLine("\n");
@@ -74,6 +77,12 @@ namespace Cs2Lang.Trash
 
             // flush writer
             writer.Flush();
+        }
+
+        // TODO: read through the file to store names and desc into a dict.
+        private void GetCommonThroughFile(string file)
+        {
+            throw new NotImplementedException();
         }
 
         public void Close()

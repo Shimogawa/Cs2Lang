@@ -21,11 +21,14 @@ namespace Cs2Lang
         private string path;
 
         private bool needsCleanUp;
+        private bool needsLog;
+        private DateTime startTime;
 
-        public Cs2Lang(string path, string modNameSpace, bool needsCleanUp = true)
+        public Cs2Lang(string path, string modNameSpace, bool needsCleanUp = true, bool needsLog = false)
         {
             this.modNameSpace = modNameSpace;
             this.needsCleanUp = needsCleanUp;
+            this.needsLog = needsLog;
             if (!File.Exists(executeFile))
             {
                 throw new FileNotFoundException(string.Format(Strings.FileNotFound, executeFile));
@@ -54,12 +57,15 @@ namespace Cs2Lang
         {
             Dump();
             Convert();
+            if (needsCleanUp && !needsLog)
+                CleanUpLog();
             if (needsCleanUp)
-                CleanUp();
+                CleanUpOther();
         }
 
         private void Dump()
         {
+            startTime = DateTime.Now;
             var process = Process.Start(info);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(Strings.Output);
@@ -69,14 +75,15 @@ namespace Cs2Lang
             {
                 if (str.Contains("Fatal"))
                 {
-                    if (str.Contains("处理完毕"))
-                    {
-                        Console.WriteLine(str);
-                    }
-                    else
-                    {
-                        throw new Exception(Strings.ErrorInDump);
-                    }
+                    WriteLineWithForegroundColor(str, ConsoleColor.Magenta);
+                }
+                else if (str.Contains("Warn"))
+                {
+                    WriteLineWithForegroundColor(str, ConsoleColor.DarkRed);
+                }
+                else if (str.Contains("Error"))
+                {
+                    WriteLineWithForegroundColor(str, ConsoleColor.Yellow);
                 }
             }
             process.WaitForExit(100000);
@@ -133,14 +140,8 @@ namespace Cs2Lang
             writer.Close();
         }
 
-        private void CleanUp()
+        private void CleanUpOther()
         {
-            foreach (var file in Directory.GetFiles(executePath))
-            {
-                if (Path.GetExtension(file) == ".log")
-                    File.Delete(file);
-            }
-
             foreach (var file in Directory.GetFiles(currentWorkingDir))
             {
                 if (Path.GetFileNameWithoutExtension(file) == modNameSpace &&
@@ -153,6 +154,28 @@ namespace Cs2Lang
                 if (directory.Contains(modNameSpace))
                     Directory.Delete(directory, true);
             }
+            Console.WriteLine(Strings.FileCleanedUp);
+        }
+
+        private void CleanUpLog()
+        {
+            foreach (var file in Directory.GetFiles(executePath))
+            {
+                //if (Path.GetExtension(file) == ".log")
+                //    File.Delete(file);
+                if (Path.GetFileName(file) == string.Format("localizer.{0:D2}_{1:D2}.{2:D2}_{3:D2}.log",
+                        startTime.Month, startTime.Day, startTime.Hour, startTime.Minute))
+                {
+                    File.Delete(file);
+                }
+            }
+        }
+
+        private void WriteLineWithForegroundColor(string line, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(line);
+            Console.ResetColor();
         }
     }
 }
