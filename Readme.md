@@ -4,7 +4,7 @@
 
 ## About
 
-泰拉瑞亚mod文件汉化使用.lang文件，这个软件是对(tModLocalizer)[https://github.com/mistzzt/tmodloader-mod-localizer]的包装。TModLocalizer是将.tmod拆包为.json，而此软件是将产生的.json转换为.lang。
+泰拉瑞亚mod文件汉化使用.lang文件，这个软件是对[tModLocalizer](https://github.com/mistzzt/tmodloader-mod-localizer)的包装。TModLocalizer是将.tmod拆包为.json，而此软件是将产生的.json转换为.lang。
 
 使用了 **Microsoft .Net Framework v4.5.1**。请确保安装了这个或更高版本的 Microsoft .Net Framework。详情请见[巨硬官网](https://microsoft.com)。
 
@@ -22,7 +22,9 @@
 
 ### MacOS User
 
-请使用`brew install mono`安装mono。如果不知道什么是brew，详见(homebrew官网)[https://brew.sh/]。
+请使用`brew install mono`安装mono。如果不知道什么是brew，详见[homebrew官网](https://brew.sh/)。
+
+`mono .\Cs2Lang.exe mod_file_path mod_namespace [options]`
 
 
 ## Version info
