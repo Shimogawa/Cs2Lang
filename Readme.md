@@ -18,7 +18,7 @@
 
 <font size=4>`.\Cs2Lang.exe mod_file_path mod_namespace [options]`</font>
 
-[options] 包括 -l, -h, -v, -nc。详情请使用`.\Cs2Lang.exe -h`。
+[options] 包括 -l, -h, -v, -nc, -r。详情请使用`.\Cs2Lang.exe -h`。
 
 ### MacOS User
 
@@ -28,6 +28,13 @@
 
 
 ## Version info
+
+### Version 0.3.5
+
+ - 去除了空内容替换成类名的功能
+ - 现在提供了-r的替换文本功能，需要自行写一个需要替换的单词或词组的列表。用法：
+	- `Cs2Lang mod_path mod_namespace -r replacement_text_path`
+ - 修复了无法删除ModLocalizer产生的log文件的bug。
 
 ### Version 0.3.3
 

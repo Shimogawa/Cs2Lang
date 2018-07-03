@@ -173,6 +173,15 @@ namespace Cs2Lang.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Replaces with the words and sentences in the specified file in the .lang file. 的本地化字符串。
+        /// </summary>
+        internal static string ReplaceOption {
+            get {
+                return ResourceManager.GetString("ReplaceOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Specify TML file path and mod&apos;s namespace name.
         ///Format: .\Cs2Lang.exe mod_path mod_namespace_name 的本地化字符串。
         /// </summary>

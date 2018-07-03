@@ -157,6 +157,9 @@
   <data name="ProgramInfo" xml:space="preserve">
     <value>Cs2Lang  版本{0}</value>
   </data>
+  <data name="ReplaceOption" xml:space="preserve">
+    <value>用指定文件中的词语和句子替换.lang文件中的。</value>
+  </data>
   <data name="SpecificPath" xml:space="preserve">
     <value>请指定Mod文件路径和Mod命名空间名称。
 格式为：.\Cs2Lang.exe mod_path mod_namespace_name</value>

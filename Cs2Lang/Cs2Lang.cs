@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -18,7 +19,8 @@ namespace Cs2Lang
         private string jsonDir;
 
         private ProcessStartInfo info;
-        private string path;
+
+        private List<string> replaceWords = null;
 
         private bool needsCleanUp;
         private bool needsLog;
@@ -38,7 +40,7 @@ namespace Cs2Lang
             {
                 throw new FileNotFoundException(string.Format(Strings.FileNotFound, path));
             }
-            this.path = path;
+            
             info = new ProcessStartInfo
             {
                 FileName = executeFile,
@@ -51,6 +53,13 @@ namespace Cs2Lang
                 WindowStyle = ProcessWindowStyle.Hidden,
                 StandardOutputEncoding = Encoding.UTF8
             };
+        }
+
+        public Cs2Lang(string path, string modNameSpace, bool needsCleanUp, bool needsLog,
+            string replaceFile) : this(path, modNameSpace, needsCleanUp, needsLog)
+        {
+            if (!string.IsNullOrWhiteSpace(replaceFile))
+                replaceWords = ReplacementList(replaceFile);
         }
 
         public void Start()
@@ -103,7 +112,7 @@ namespace Cs2Lang
         private void Convert()
         {
             jsonDir = Path.Combine(currentWorkingDir, modNameSpace);
-            var writer = new LangWriter(string.Format(langFile, modNameSpace));
+            var writer = new LangWriter(string.Format(langFile, modNameSpace), modNameSpace, replaceWords);
             foreach (var dir in Directory.GetDirectories(jsonDir))
             {
                 if (dir.Contains(TranslationTypes.Buffs.ToString()))
@@ -164,11 +173,30 @@ namespace Cs2Lang
                 //if (Path.GetExtension(file) == ".log")
                 //    File.Delete(file);
                 if (Path.GetFileName(file) == string.Format("localizer.{0:D2}_{1:D2}.{2:D2}_{3:D2}.log",
-                        startTime.Month, startTime.Day, startTime.Hour, startTime.Minute))
+                        startTime.Month, startTime.Day,
+                        startTime.Hour > 12 ? startTime.Hour - 12 : startTime.Hour, startTime.Minute))
                 {
                     File.Delete(file);
                 }
             }
+        }
+
+        private static List<string> ReplacementList(string file)
+        {
+            var list = new List<string>();
+            using (var reader = new StreamReader(new FileStream(file, FileMode.Open)))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (!string.IsNullOrWhiteSpace(line) && !line.StartsWith("//"))
+                    {
+                        list.Add(line);
+                    }
+                }
+            }
+
+            return list;
         }
 
         private void WriteLineWithForegroundColor(string line, ConsoleColor color)

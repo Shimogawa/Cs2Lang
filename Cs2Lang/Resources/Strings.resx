@@ -157,6 +157,9 @@ This program is a package for ModLocalizer which transfers .json files to .lang 
   <data name="ProgramInfo" xml:space="preserve">
     <value>Cs2Lang  Version {0}</value>
   </data>
+  <data name="ReplaceOption" xml:space="preserve">
+    <value>Replaces with the words and sentences in the specified file in the .lang file.</value>
+  </data>
   <data name="SpecificPath" xml:space="preserve">
     <value>Specify TML file path and mod's namespace name.
 Format: .\Cs2Lang.exe mod_path mod_namespace_name</value>

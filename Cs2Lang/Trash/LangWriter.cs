@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using Newtonsoft.Json.Linq;
 
 namespace Cs2Lang.Trash
@@ -7,11 +9,19 @@ namespace Cs2Lang.Trash
     class LangWriter
     {
 
-        public StreamWriter writer;
+        private StreamWriter writer;
 
-        public LangWriter(string path)
+        private List<string> replaceWords;
+        private bool needsReplacement;
+
+        private string modName;
+
+        public LangWriter(string path, string namesp, List<string> replaceWords = null)
         {
             writer = new StreamWriter(new FileStream(path, FileMode.Create));
+            this.replaceWords = replaceWords;
+            needsReplacement = replaceWords != null;
+            modName = namesp;
         }
 
         public void WriteLine(string line)
@@ -22,6 +32,14 @@ namespace Cs2Lang.Trash
         public void WriteThisFile(string file, TranslationTypes type)
         {
             // GetCommonThroughFile(file);
+            if (needsReplacement)
+            {
+                writer.WriteLine();
+                writer.WriteLine("// Commons");
+                writer.WriteLine();
+                WriteFileCommon();
+                writer.WriteLine();
+            }
 
             writer.WriteLine();
             writer.WriteLine($"// {Path.GetFileNameWithoutExtension(file)}");
@@ -42,11 +60,13 @@ namespace Cs2Lang.Trash
             {
                 typeName = obj["TypeName"].Value<string>();
                 name = obj["Name"].Value<string>();
-                if (type != TranslationTypes.Tiles && name.Length == 0)
-                    name = typeName;
+                name = needsReplacement ? CheckReplace(name) : name;
+                //if (type != TranslationTypes.Tiles && name.Length == 0)
+                //    name = typeName;
                 if (type == TranslationTypes.Buffs)
                 {
                     tip = obj["Tip"].Value<string>().Replace("\n", "\\n");
+                    tip = needsReplacement ? CheckReplace(tip) : tip;
                     writer.WriteLine($"BuffName.{typeName}={name}");
                     if (tip.Length != 0)
                         writer.WriteLine($"BuffDescription.{typeName}={tip}");
@@ -55,6 +75,7 @@ namespace Cs2Lang.Trash
                 else if (type == TranslationTypes.Items)
                 {
                     tip = obj["ToolTip"].Value<string>().Replace("\n", "\\n");
+                    tip = needsReplacement ? CheckReplace(tip) : tip;
                     writer.WriteLine($"ItemName.{typeName}={name}");
                     if (tip.Length != 0)
                         writer.WriteLine($"ItemToolTip.{typeName}={tip}");
@@ -77,6 +98,28 @@ namespace Cs2Lang.Trash
 
             // flush writer
             writer.Flush();
+        }
+
+        private void WriteFileCommon()
+        {
+            for (int i = 0; i < replaceWords.Count; i++)
+            {
+                writer.WriteLine($"Common.Name{i:D}={replaceWords[i]}");
+            }
+        }
+
+        private string CheckReplace(string str)
+        {
+            if (string.IsNullOrWhiteSpace(str))
+                return str;
+            var newstr = str;
+            for (int i = 0; i < replaceWords.Count; i++)
+            {
+                newstr = newstr.Replace(replaceWords[i],
+                    $"{{$Mods.{modName}.Common.Name{i}}}");
+            }
+
+            return newstr;
         }
 
         // TODO: read through the file to store names and desc into a dict.

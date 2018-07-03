@@ -12,6 +12,7 @@ namespace Cs2Lang
 
         private static bool needsCleanUp = true;
         private static bool needsLog = false;
+        private static string replaceFile = null;
 
         static void Main(string[] args)
         {
@@ -27,7 +28,7 @@ namespace Cs2Lang
 
             var orig = Console.Title;
             Console.Title = "Cs2Lang - ModLocalizer";
-            var process = new Cs2Lang(modPath, modName, needsCleanUp, needsLog);
+            var process = new Cs2Lang(modPath, modName, needsCleanUp, needsLog, replaceFile);
             process.Start();
             //Console.Title = orig;
         }
@@ -51,6 +52,7 @@ namespace Cs2Lang
 
             var cleanupOption = app.Option("-nc | --nocleanup", Strings.CleanupOption, CommandOptionType.NoValue);
             var logOption = app.Option("-l | --log", Strings.LogOption, CommandOptionType.NoValue);
+            var replaceOption = app.Option("-r | --replace", Strings.ReplaceOption, CommandOptionType.SingleValue);
 
             var modFilePathArg = app.Argument(Strings.PathArgument, Strings.PathArgumentDetail, true);
 
@@ -64,6 +66,12 @@ namespace Cs2Lang
                 if (cleanupOption.HasValue())
                 {
                     needsCleanUp = false;
+                }
+
+                if (replaceOption.HasValue())
+                {
+                    replaceFile = replaceOption.Value();
+                    Console.WriteLine(replaceOption.Value());
                 }
 
                 if (logOption.HasValue())
