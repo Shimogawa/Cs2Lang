@@ -54,10 +54,10 @@
 
 ### Todo in next versions
 
- [x] 根据外部文件替换lang文本至Common
- [ ] 提供可以从json转lang的选项
- [ ] 整段识别重复加入Common
- [ ] 识别重复次数
+ - [x] 根据外部文件替换lang文本至Common
+ - [ ] 提供可以从json转lang的选项
+ - [ ] 整段识别重复加入Common
+ - [ ] 识别重复次数
 
 ## Credits
 
