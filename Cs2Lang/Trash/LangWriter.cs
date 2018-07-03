@@ -22,6 +22,14 @@ namespace Cs2Lang.Trash
             this.replaceWords = replaceWords;
             needsReplacement = replaceWords != null;
             modName = namesp;
+            if (needsReplacement)
+            {
+                writer.WriteLine();
+                writer.WriteLine("// Commons");
+                writer.WriteLine();
+                WriteFileCommon();
+                writer.WriteLine();
+            }
         }
 
         public void WriteLine(string line)
@@ -32,14 +40,6 @@ namespace Cs2Lang.Trash
         public void WriteThisFile(string file, TranslationTypes type)
         {
             // GetCommonThroughFile(file);
-            if (needsReplacement)
-            {
-                writer.WriteLine();
-                writer.WriteLine("// Commons");
-                writer.WriteLine();
-                WriteFileCommon();
-                writer.WriteLine();
-            }
 
             writer.WriteLine();
             writer.WriteLine($"// {Path.GetFileNameWithoutExtension(file)}");
