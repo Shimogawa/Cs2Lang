@@ -129,6 +129,12 @@
   <data name="FileNotFound" xml:space="preserve">
     <value>文件未找到：{0}</value>
   </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>文件夹未找到：{0}</value>
+  </data>
+  <data name="FromJsonOption" xml:space="preserve">
+    <value>从指定的json文件夹导入而非Mod文件导入（json文件夹名称需要与Mod命名空间相同）</value>
+  </data>
   <data name="LogOption" xml:space="preserve">
     <value>将不删除当前ModLocalizer产生的log文件。</value>
   </data>
@@ -139,10 +145,10 @@
     <value>输出：</value>
   </data>
   <data name="PathArgument" xml:space="preserve">
-    <value>Mod文件</value>
+    <value>Mod文件或Json文件夹</value>
   </data>
   <data name="PathArgumentDetail" xml:space="preserve">
-    <value>格式：[Mod文件路径] [Mod命名空间名称（无空格）]</value>
+    <value>格式：[Mod文件路径或Json文件夹路径] [Mod命名空间名称（无空格）]</value>
   </data>
   <data name="ProcessKilled" xml:space="preserve">
     <value>已强行终止外部程序的运行！可能发生错误！解包失败！</value>
@@ -163,5 +169,8 @@
   <data name="SpecificPath" xml:space="preserve">
     <value>请指定Mod文件路径和Mod命名空间名称。
 格式为：.\Cs2Lang.exe mod_path mod_namespace_name</value>
+  </data>
+  <data name="WrongArgument" xml:space="preserve">
+    <value>参数错误。</value>
   </data>
 </root>

@@ -13,7 +13,7 @@ namespace Cs2Lang
         private const string executeFile = @".\Mod.Localizer_0.2\Mod.Localizer.exe";
         private const string executePath = @".\Mod.Localizer_0.2\";
         private const string currentWorkingDir = @".\";
-        private const string langFile = ".\\en-US - {0}.lang";
+        private const string langFile = ".\\original - {0}.lang";
 
         private string modNameSpace;
         private string jsonDir;
@@ -21,54 +21,65 @@ namespace Cs2Lang
         private ProcessStartInfo info;
 
         private List<string> replaceWords = null;
+        private string thePath;
 
         private bool needsCleanUp;
         private bool needsLog;
+        private bool fromJson;
         private DateTime startTime;
 
-        public Cs2Lang(string path, string modNameSpace, bool needsCleanUp = true, bool needsLog = false)
+        public Cs2Lang(string path, string modNameSpace,
+            bool needsCleanUp = true, bool needsLog = false, bool fromJson = false, string replaceFile = null)
         {
-            this.modNameSpace = modNameSpace;
+            thePath = path;
+            this.modNameSpace = fromJson ? (string.IsNullOrEmpty(path.Substring(path.LastIndexOf("\\") + 1)) ?
+                    "Unknown" : path.Substring(path.LastIndexOf("\\") + 1))
+                : modNameSpace;
             this.needsCleanUp = needsCleanUp;
             this.needsLog = needsLog;
-            if (!File.Exists(executeFile))
+            this.fromJson = fromJson;
+            if (!string.IsNullOrWhiteSpace(replaceFile))
+                replaceWords = ReplacementList(replaceFile);
+            if (!fromJson && !File.Exists(executeFile))
             {
                 throw new FileNotFoundException(string.Format(Strings.FileNotFound, executeFile));
             }
 
-            if (!File.Exists(path))
+            if (fromJson && !Directory.Exists(path))
             {
                 throw new FileNotFoundException(string.Format(Strings.FileNotFound, path));
             }
-            
-            info = new ProcessStartInfo
-            {
-                FileName = executeFile,
-                Arguments = path,
-                UseShellExecute = false,
-                RedirectStandardInput = true,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true,
-                WindowStyle = ProcessWindowStyle.Hidden,
-                StandardOutputEncoding = Encoding.UTF8
-            };
-        }
 
-        public Cs2Lang(string path, string modNameSpace, bool needsCleanUp, bool needsLog,
-            string replaceFile) : this(path, modNameSpace, needsCleanUp, needsLog)
-        {
-            if (!string.IsNullOrWhiteSpace(replaceFile))
-                replaceWords = ReplacementList(replaceFile);
+            if (!fromJson && !File.Exists(path))
+            {
+                throw new FileNotFoundException(string.Format(Strings.FileNotFound, path));
+            }
+
+            if (!fromJson)
+            {
+                info = new ProcessStartInfo
+                {
+                    FileName = executeFile,
+                    Arguments = path,
+                    UseShellExecute = false,
+                    RedirectStandardInput = true,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    CreateNoWindow = true,
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    StandardOutputEncoding = Encoding.UTF8
+                };
+            }
         }
 
         public void Start()
         {
-            Dump();
+            if (!fromJson)
+                Dump();
             Convert();
             if (needsCleanUp && !needsLog)
                 CleanUpLog();
-            if (needsCleanUp)
+            if (!fromJson && needsCleanUp)
                 CleanUpOther();
         }
 
@@ -111,7 +122,7 @@ namespace Cs2Lang
 
         private void Convert()
         {
-            jsonDir = Path.Combine(currentWorkingDir, modNameSpace);
+            jsonDir = fromJson ? thePath : Path.Combine(currentWorkingDir, modNameSpace);
             var writer = new LangWriter(string.Format(langFile, modNameSpace), modNameSpace, replaceWords);
             foreach (var dir in Directory.GetDirectories(jsonDir))
             {
@@ -146,7 +157,7 @@ namespace Cs2Lang
                     }
                 }
             }
-            writer.Close();
+            writer.CloseStream();
         }
 
         private void CleanUpOther()
@@ -199,7 +210,7 @@ namespace Cs2Lang
             return list;
         }
 
-        private void WriteLineWithForegroundColor(string line, ConsoleColor color)
+        public void WriteLineWithForegroundColor(string line, ConsoleColor color)
         {
             Console.ForegroundColor = color;
             Console.WriteLine(line);

@@ -29,6 +29,12 @@
 
 ## Version info
 
+### Version 0.3.6
+
+ - 增加了从.json文件夹获取.lang的功能
+	- 使用`-j`或`--usejson`。
+	- 使用此功能可以不提供Mod Namespace，但是生成的文件名称可能为Unknown。
+
 ### Version 0.3.5
 
  - 去除了空内容替换成类名的功能

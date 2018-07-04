@@ -12,6 +12,7 @@ namespace Cs2Lang
 
         private static bool needsCleanUp = true;
         private static bool needsLog = false;
+        private static bool fromJson = false;
         private static string replaceFile = null;
 
         static void Main(string[] args)
@@ -28,7 +29,7 @@ namespace Cs2Lang
 
             var orig = Console.Title;
             Console.Title = "Cs2Lang - ModLocalizer";
-            var process = new Cs2Lang(modPath, modName, needsCleanUp, needsLog, replaceFile);
+            var process = new Cs2Lang(modPath, modName, needsCleanUp, needsLog, fromJson, replaceFile);
             process.Start();
             //Console.Title = orig;
         }
@@ -53,13 +54,27 @@ namespace Cs2Lang
             var cleanupOption = app.Option("-nc | --nocleanup", Strings.CleanupOption, CommandOptionType.NoValue);
             var logOption = app.Option("-l | --log", Strings.LogOption, CommandOptionType.NoValue);
             var replaceOption = app.Option("-r | --replace", Strings.ReplaceOption, CommandOptionType.SingleValue);
+            var fromJsonOption = app.Option("-j | --usejson", Strings.FromJsonOption, CommandOptionType.NoValue);
+            var secret = app.Option("--password", "", CommandOptionType.SingleValue);
 
             var modFilePathArg = app.Argument(Strings.PathArgument, Strings.PathArgumentDetail, true);
 
             app.OnExecute(() =>
             {
-                if (modFilePathArg.Values.Count != 2)
+                if (fromJsonOption.HasValue())
                 {
+                    fromJson = true;
+                }
+
+                if (!fromJson && modFilePathArg.Values.Count != 2)
+                {
+                    Console.WriteLine(Strings.WrongArgument);
+                    return -1;
+                }
+
+                if (fromJson && (modFilePathArg.Values.Count > 2 || modFilePathArg.Values.Count < 1))
+                {
+                    Console.WriteLine(Strings.WrongArgument);
                     return -1;
                 }
 
@@ -71,14 +86,18 @@ namespace Cs2Lang
                 if (replaceOption.HasValue())
                 {
                     replaceFile = replaceOption.Value();
-                    Console.WriteLine(replaceOption.Value());
                 }
+
+                //if (fromJsonOption.HasValue())
+                //{
+                //    fromJson = true;
+                //}
 
                 if (logOption.HasValue())
                     needsLog = true;
 
                 modPath = modFilePathArg.Values[0];
-                modName = modFilePathArg.Values[1];
+                modName = fromJson ? null : modFilePathArg.Values[1];
                 return 0;
             });
 
@@ -88,11 +107,13 @@ namespace Cs2Lang
 
             if (string.IsNullOrWhiteSpace(modPath))
             {
+                Console.WriteLine(Strings.WrongArgument);
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(modName))
+            if (!fromJson && string.IsNullOrWhiteSpace(modName))
             {
+                Console.WriteLine(Strings.WrongArgument);
                 return false;
             }
 

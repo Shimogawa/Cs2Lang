@@ -128,7 +128,7 @@ namespace Cs2Lang.Trash
             throw new NotImplementedException();
         }
 
-        public void Close()
+        public void CloseStream()
         {
             writer.Close();
         }

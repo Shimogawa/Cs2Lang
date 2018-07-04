@@ -129,6 +129,12 @@
   <data name="FileNotFound" xml:space="preserve">
     <value>Important file not found: {0}</value>
   </data>
+  <data name="FolderNotFound" xml:space="preserve">
+    <value>Folder not found: {0}</value>
+  </data>
+  <data name="FromJsonOption" xml:space="preserve">
+    <value>Import from specific json folder instead of tmod file. (Folder name should be the same as the mod namespace.)</value>
+  </data>
   <data name="LogOption" xml:space="preserve">
     <value>Does not delete the current log file created by ModLocalizer.</value>
   </data>
@@ -139,10 +145,10 @@
     <value>Output: </value>
   </data>
   <data name="PathArgument" xml:space="preserve">
-    <value>Tmod file</value>
+    <value>Tmod file or Json Folder</value>
   </data>
   <data name="PathArgumentDetail" xml:space="preserve">
-    <value>Syntax: tmod_path mod_namespace(without whitespace)</value>
+    <value>Syntax: {tmod_path | json_folder} {mod_namespace(without whitespace)}</value>
   </data>
   <data name="ProcessKilled" xml:space="preserve">
     <value>Killed process... Error reported.</value>
@@ -163,5 +169,8 @@ This program is a package for ModLocalizer which transfers .json files to .lang 
   <data name="SpecificPath" xml:space="preserve">
     <value>Specify TML file path and mod's namespace name.
 Format: .\Cs2Lang.exe mod_path mod_namespace_name</value>
+  </data>
+  <data name="WrongArgument" xml:space="preserve">
+    <value>Wrong argument.</value>
   </data>
 </root>

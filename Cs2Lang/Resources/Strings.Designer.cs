@@ -97,6 +97,24 @@ namespace Cs2Lang.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Folder not found: {0} 的本地化字符串。
+        /// </summary>
+        internal static string FolderNotFound {
+            get {
+                return ResourceManager.GetString("FolderNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Import from specific json folder instead of tmod file. (Folder name should be the same as the mod namespace.) 的本地化字符串。
+        /// </summary>
+        internal static string FromJsonOption {
+            get {
+                return ResourceManager.GetString("FromJsonOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Does not delete the current log file created by ModLocalizer. 的本地化字符串。
         /// </summary>
         internal static string LogOption {
@@ -124,7 +142,7 @@ namespace Cs2Lang.Resources {
         }
         
         /// <summary>
-        ///   查找类似 Tmod file 的本地化字符串。
+        ///   查找类似 Tmod file or Json Folder 的本地化字符串。
         /// </summary>
         internal static string PathArgument {
             get {
@@ -133,7 +151,7 @@ namespace Cs2Lang.Resources {
         }
         
         /// <summary>
-        ///   查找类似 Syntax: tmod_path mod_namespace(without whitespace) 的本地化字符串。
+        ///   查找类似 Syntax: {tmod_path | json_folder} {mod_namespace(without whitespace)} 的本地化字符串。
         /// </summary>
         internal static string PathArgumentDetail {
             get {
@@ -188,6 +206,15 @@ namespace Cs2Lang.Resources {
         internal static string SpecificPath {
             get {
                 return ResourceManager.GetString("SpecificPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Wrong argument. 的本地化字符串。
+        /// </summary>
+        internal static string WrongArgument {
+            get {
+                return ResourceManager.GetString("WrongArgument", resourceCulture);
             }
         }
     }
