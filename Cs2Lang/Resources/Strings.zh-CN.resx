@@ -135,6 +135,9 @@
   <data name="FromJsonOption" xml:space="preserve">
     <value>从指定的json文件夹导入而非Mod文件导入（json文件夹名称需要与Mod命名空间相同）</value>
   </data>
+  <data name="HelpOption" xml:space="preserve">
+    <value>显示帮助。</value>
+  </data>
   <data name="LogOption" xml:space="preserve">
     <value>将不删除当前ModLocalizer产生的log文件。</value>
   </data>
@@ -169,6 +172,9 @@
   <data name="SpecificPath" xml:space="preserve">
     <value>请指定Mod文件路径和Mod命名空间名称。
 格式为：.\Cs2Lang.exe mod_path mod_namespace_name</value>
+  </data>
+  <data name="VersionOption" xml:space="preserve">
+    <value>显示版本信息。</value>
   </data>
   <data name="WrongArgument" xml:space="preserve">
     <value>参数错误。</value>

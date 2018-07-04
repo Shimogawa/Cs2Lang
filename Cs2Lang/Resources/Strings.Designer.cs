@@ -115,6 +115,15 @@ namespace Cs2Lang.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Show help. 的本地化字符串。
+        /// </summary>
+        internal static string HelpOption {
+            get {
+                return ResourceManager.GetString("HelpOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Does not delete the current log file created by ModLocalizer. 的本地化字符串。
         /// </summary>
         internal static string LogOption {
@@ -206,6 +215,15 @@ namespace Cs2Lang.Resources {
         internal static string SpecificPath {
             get {
                 return ResourceManager.GetString("SpecificPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Show version information. 的本地化字符串。
+        /// </summary>
+        internal static string VersionOption {
+            get {
+                return ResourceManager.GetString("VersionOption", resourceCulture);
             }
         }
         

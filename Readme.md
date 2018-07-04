@@ -4,6 +4,8 @@
 
 ## About
 
+目前版本0.3.6.12
+
 泰拉瑞亚mod文件汉化使用.lang文件，这个软件是对[tModLocalizer](https://github.com/mistzzt/tmodloader-mod-localizer)的包装。TModLocalizer是将.tmod拆包为.json，而此软件是将产生的.json转换为.lang。
 
 使用了 **Microsoft .Net Framework v4.5.1**。请确保安装了这个或更高版本的 Microsoft .Net Framework。详情请见[巨硬官网](https://microsoft.com)。
@@ -34,6 +36,7 @@
  - 增加了从.json文件夹获取.lang的功能
 	- 使用`-j`或`--usejson`。
 	- 使用此功能可以不提供Mod Namespace，但是生成的文件名称可能为Unknown。
+ - 优化了使用体验，增加翻译。
 
 ### Version 0.3.5
 
@@ -61,7 +64,7 @@
 ### Todo in next versions
 
  - [x] 根据外部文件替换lang文本至Common
- - [ ] 提供可以从json转lang的选项
+ - [x] 提供可以从json转lang的选项
  - [ ] 整段识别重复加入Common
  - [ ] 识别重复次数
 

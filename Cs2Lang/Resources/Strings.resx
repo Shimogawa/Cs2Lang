@@ -135,6 +135,9 @@
   <data name="FromJsonOption" xml:space="preserve">
     <value>Import from specific json folder instead of tmod file. (Folder name should be the same as the mod namespace.)</value>
   </data>
+  <data name="HelpOption" xml:space="preserve">
+    <value>Show help.</value>
+  </data>
   <data name="LogOption" xml:space="preserve">
     <value>Does not delete the current log file created by ModLocalizer.</value>
   </data>
@@ -169,6 +172,9 @@ This program is a package for ModLocalizer which transfers .json files to .lang 
   <data name="SpecificPath" xml:space="preserve">
     <value>Specify TML file path and mod's namespace name.
 Format: .\Cs2Lang.exe mod_path mod_namespace_name</value>
+  </data>
+  <data name="VersionOption" xml:space="preserve">
+    <value>Show version information.</value>
   </data>
   <data name="WrongArgument" xml:space="preserve">
     <value>Wrong argument.</value>

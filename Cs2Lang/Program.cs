@@ -48,8 +48,10 @@ namespace Cs2Lang
                 
             };
 
-            app.HelpOption("-h | --help");
-            app.VersionOption("-v | --version", version.ToString(3), version.ToString(4));
+            var helpOption = app.HelpOption("-h | --help");
+            helpOption.Description = Strings.HelpOption;
+            var versionOption = app.VersionOption("-v | --version", version.ToString(3), version.ToString(4));
+            versionOption.Description = Strings.VersionOption;
 
             var cleanupOption = app.Option("-nc | --nocleanup", Strings.CleanupOption, CommandOptionType.NoValue);
             var logOption = app.Option("-l | --log", Strings.LogOption, CommandOptionType.NoValue);
@@ -68,13 +70,11 @@ namespace Cs2Lang
 
                 if (!fromJson && modFilePathArg.Values.Count != 2)
                 {
-                    Console.WriteLine(Strings.WrongArgument);
                     return -1;
                 }
 
                 if (fromJson && (modFilePathArg.Values.Count > 2 || modFilePathArg.Values.Count < 1))
                 {
-                    Console.WriteLine(Strings.WrongArgument);
                     return -1;
                 }
 
@@ -101,19 +101,27 @@ namespace Cs2Lang
                 return 0;
             });
 
+            var finish = args.Length == 1 &&
+                         (args[0] == "-v" || args[0] == "--version" || args[0] == "-h" || args[0] == "--help");
             var r = app.Execute(args);
             if (r < 0)
+            {
+                if (!finish)
+                    Console.WriteLine(Strings.WrongArgument);
                 return false;
+            }
 
             if (string.IsNullOrWhiteSpace(modPath))
             {
-                Console.WriteLine(Strings.WrongArgument);
+                if (!finish)
+                    Console.WriteLine(Strings.WrongArgument);
                 return false;
             }
 
             if (!fromJson && string.IsNullOrWhiteSpace(modName))
             {
-                Console.WriteLine(Strings.WrongArgument);
+                if (!(helpOption.HasValue() || versionOption.HasValue()))
+                    Console.WriteLine(Strings.WrongArgument);
                 return false;
             }
 
