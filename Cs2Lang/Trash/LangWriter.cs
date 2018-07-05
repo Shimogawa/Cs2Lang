@@ -61,8 +61,8 @@ namespace Cs2Lang.Trash
                 typeName = obj["TypeName"].Value<string>();
                 name = obj["Name"].Value<string>();
                 name = needsReplacement ? CheckReplace(name) : name;
-                //if (type != TranslationTypes.Tiles && name.Length == 0)
-                //    name = typeName;
+                if (type != TranslationTypes.Tiles && name.Length == 0)
+                    name = "UNKNOWN";
                 if (type == TranslationTypes.Buffs)
                 {
                     tip = obj["Tip"].Value<string>().Replace("\n", "\\n");

@@ -18,15 +18,15 @@
 
 ### Microsoft User
 
-<font size=4>`.\Cs2Lang.exe mod_file_path mod_namespace [options]`</font>
+<font size=4>`Cs2Lang mod_file_path mod_namespace [options]`</font>
 
-[options] 包括 -l, -h, -v, -nc, -r。详情请使用`.\Cs2Lang.exe -h`。
+[options] 包括 -l, -h, -v, -nc, -r, -j。详情请使用`Cs2Lang -h`。
 
 ### MacOS User
 
 请使用`brew install mono`安装mono。如果不知道什么是brew，详见[homebrew官网](https://brew.sh/)。
 
-`mono .\Cs2Lang.exe mod_file_path mod_namespace [options]`
+`mono ./Cs2Lang.exe mod_file_path mod_namespace [options]`
 
 
 ## Version info
@@ -44,6 +44,8 @@
  - 现在提供了-r的替换文本功能，需要自行写一个需要替换的单词或词组的列表。用法：
 	- `Cs2Lang mod_path mod_namespace -r replacement_text_path`
  - 修复了无法删除ModLocalizer产生的log文件的bug。
+ - 空名称现在不会使用类名代替了，而使用**UNKNOWN**。
+ - 空MapObject名称现在不会被删除了，而是使用**UNKNOWN**填充。
 
 ### Version 0.3.3
 
