@@ -37,6 +37,8 @@
 	- 使用`-j`或`--usejson`。
 	- 使用此功能可以不提供Mod Namespace，但是生成的文件名称可能为Unknown。
  - 优化了使用体验，增加翻译。
+ - 空名称现在不会使用类名代替了，而使用**UNKNOWN**。
+ - 空MapObject名称现在不会被删除了，而是使用**UNKNOWN**填充。
 
 ### Version 0.3.5
 
@@ -44,8 +46,6 @@
  - 现在提供了-r的替换文本功能，需要自行写一个需要替换的单词或词组的列表。用法：
 	- `Cs2Lang mod_path mod_namespace -r replacement_text_path`
  - 修复了无法删除ModLocalizer产生的log文件的bug。
- - 空名称现在不会使用类名代替了，而使用**UNKNOWN**。
- - 空MapObject名称现在不会被删除了，而是使用**UNKNOWN**填充。
 
 ### Version 0.3.3
 
