@@ -31,6 +31,10 @@
 
 ## Version info
 
+### Version 0.3.7
+
+ - 空名称（除MapObject）现在在前一行使用**===UNKNWN===**标记，删除在等号后的UNKNOWN。
+
 ### Version 0.3.6
 
  - 增加了从.json文件夹获取.lang的功能
@@ -38,7 +42,6 @@
 	- 使用此功能可以不提供Mod Namespace，但是生成的文件名称可能为Unknown。
  - 优化了使用体验，增加翻译。
  - 空名称现在不会使用类名代替了，而使用**UNKNOWN**。
- - 空MapObject名称现在不会被删除了，而是使用**UNKNOWN**填充。
 
 ### Version 0.3.5
 

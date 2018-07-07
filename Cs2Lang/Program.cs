@@ -44,8 +44,7 @@ namespace Cs2Lang
                 FullName = typeof(Program).Namespace,
                 ShortVersionGetter = () => version.ToString(3),
                 LongVersionGetter = () => version.ToString(4),
-                ExtendedHelpText = Strings.ProgramDetail + Environment.NewLine,
-                
+                ExtendedHelpText = Strings.ProgramDetail + Environment.NewLine
             };
 
             var helpOption = app.HelpOption("-h | --help");
@@ -57,7 +56,7 @@ namespace Cs2Lang
             var logOption = app.Option("-l | --log", Strings.LogOption, CommandOptionType.NoValue);
             var replaceOption = app.Option("-r | --replace", Strings.ReplaceOption, CommandOptionType.SingleValue);
             var fromJsonOption = app.Option("-j | --usejson", Strings.FromJsonOption, CommandOptionType.NoValue);
-            var secret = app.Option("--password", "", CommandOptionType.SingleValue);
+            //var secret = app.Option("--password", "", CommandOptionType.SingleValue);
 
             var modFilePathArg = app.Argument(Strings.PathArgument, Strings.PathArgumentDetail, true);
 

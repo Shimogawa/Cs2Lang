@@ -8,6 +8,7 @@ namespace Cs2Lang.Trash
 {
     class LangWriter
     {
+        private const string unknown = "===UNKNWN===";
 
         private StreamWriter writer;
 
@@ -62,7 +63,7 @@ namespace Cs2Lang.Trash
                 name = obj["Name"].Value<string>();
                 name = needsReplacement ? CheckReplace(name) : name;
                 if (type != TranslationTypes.Tiles && name.Length == 0)
-                    name = "UNKNOWN";
+                    writer.WriteLine(unknown);
                 if (type == TranslationTypes.Buffs)
                 {
                     tip = obj["Tip"].Value<string>().Replace("\n", "\\n");
