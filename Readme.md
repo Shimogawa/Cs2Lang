@@ -28,6 +28,70 @@
 
 `mono ./Cs2Lang.exe mod_file_path mod_namespace [options]`
 
+### All Help
+
+#### 1. 帮助文档
+
+`Cs2Lang -h`
+
+#### 2. 版本号
+
+`Cs2Lang -v`
+
+#### 3. 从.tmod文件导出.lang文件
+
+`Cs2Lang mod_file_path mod_namespace [-nc|-l] [-r replacement_file_path]`
+
+|参数名|可选性|用法|
+|-----|:-:|-----|
+|`mod_file_path`|必选|mod文件路径|
+|`mod_namespace`|必选|mod命名空间名称，或其名称（不带空格）。大小写不敏感，但是可能体现在生成的lang文件上|
+|`-nc`|可选|不清理任何文件（默认是清理产生的垃圾文件与日志文件）|
+|`-l`|可选|不清理日志文件，清理其余文件（如果有`-nc`则忽略此参数）|
+|`-r rfp`|可选|使用以`rfp`为路径的文件（文本文件任意格式）中的词句替换.lang中的文本，并将其写入Common|
+
+#### 4. 从json文件夹导出.lang文件
+
+`Cs2Lang json_folder_path [json_folder_name] -j [-nc|-l] [-r replacement_file_path]`
+
+|参数名|可选性|用法|
+|-----|:-:|-----|
+|`json_folder_path`|必选|json文件夹路径|
+|`json_folder_name`|可选|json文件夹名称（或mod命名空间名称），可以省略|
+|`-j`|必选|使用json导出lang文件|
+
+#### 5. 替换文本的文件格式
+
+可以是任何后缀的文件名，但文件必须是文本格式，而非二进制文件。格式为：
+
+```
+// 以两个斜杠开头的行为注释行
+// 下面这一行认作是需要替换的单词或句子
+my words
+My sentence.
+
+abcdefg
+It is good.
+
+// 不支持//在除开头的任何地方，//之前也不能有空格。
+// 以后版本可能增加支持
+```
+
+示例文本：
+
+```
+ItemName.ABC=It is good. That is good.
+```
+
+示例替换：
+
+```
+Common.Name1=It is good.
+
+ItemName.ABC={$Mods.ThisMod.Common.Name1} That is good.
+```
+
+
 
 ## Version info
 
