@@ -33,7 +33,7 @@
 
 ### Version 0.3.7
 
- - 空名称（除MapObject）现在在前一行使用**===UNKNWN===**标记，删除在等号后的UNKNOWN。
+ - 空名称（除MapObject）现在在前一行使用 **===UNKNWN===** 标记，删除在等号后的UNKNOWN。
 
 ### Version 0.3.6
 
