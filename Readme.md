@@ -4,8 +4,6 @@
 
 ## About
 
-目前版本0.3.6.12
-
 泰拉瑞亚mod文件汉化使用.lang文件，这个软件是对[tModLocalizer](https://github.com/mistzzt/tmodloader-mod-localizer)的包装。TModLocalizer是将.tmod拆包为.json，而此软件是将产生的.json转换为.lang。
 
 使用了 **Microsoft .Net Framework v4.5.1**。请确保安装了这个或更高版本的 Microsoft .Net Framework。详情请见[巨硬官网](https://microsoft.com)。
@@ -98,6 +96,7 @@ ItemName.ABC={$Mods.ThisMod.Common.Name1} That is good.
 ### Version 0.3.7
 
  - 空名称（除MapObject）现在在前一行使用 **===UNKNWN===** 标记，删除在等号后的UNKNOWN。
+ - 修复了Tooltip写错的傻逼错误。
 
 ### Version 0.3.6
 

@@ -79,7 +79,7 @@ namespace Cs2Lang.Trash
                     tip = needsReplacement ? CheckReplace(tip) : tip;
                     writer.WriteLine($"ItemName.{typeName}={name}");
                     if (tip.Length != 0)
-                        writer.WriteLine($"ItemToolTip.{typeName}={tip}");
+                        writer.WriteLine($"ItemTooltip.{typeName}={tip}");
                     writer.WriteLine();
                 }
                 else if (type == TranslationTypes.NPCs)
