@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Text;
+using System.IO;
 using Cs2Lang.Resources;
+using Cs2Lang.Trash;
 using Microsoft.Extensions.CommandLineUtils;
 
 namespace Cs2Lang
@@ -15,8 +16,13 @@ namespace Cs2Lang
         private static bool fromJson = false;
         private static string replaceFile = null;
 
+        private static bool asdpr = false;
+        private static bool aempr = false;
+        private static string apema;
+
         static void Main(string[] args)
         {
+            asdpr = File.Exists("Pwtcl.dll");
             if (args.Length == 0)
             {
                 args = new[] { "-h" };
@@ -56,7 +62,7 @@ namespace Cs2Lang
             var logOption = app.Option("-l | --log", Strings.LogOption, CommandOptionType.NoValue);
             var replaceOption = app.Option("-r | --replace", Strings.ReplaceOption, CommandOptionType.SingleValue);
             var fromJsonOption = app.Option("-j | --usejson", Strings.FromJsonOption, CommandOptionType.NoValue);
-            //var secret = app.Option("--password", "", CommandOptionType.SingleValue);
+            var secret = app.Option("--password", "", CommandOptionType.SingleValue);
 
             var modFilePathArg = app.Argument(Strings.PathArgument, Strings.PathArgumentDetail, true);
 
@@ -75,6 +81,12 @@ namespace Cs2Lang
                 if (fromJson && (modFilePathArg.Values.Count > 2 || modFilePathArg.Values.Count < 1))
                 {
                     return -1;
+                }
+
+                if (asdpr && secret.HasValue())
+                {
+                    aempr = true;
+                    apema = secret.Value();
                 }
 
                 if (cleanupOption.HasValue())
@@ -103,6 +115,18 @@ namespace Cs2Lang
             var finish = args.Length == 1 &&
                          (args[0] == "-v" || args[0] == "--version" || args[0] == "-h" || args[0] == "--help");
             var r = app.Execute(args);
+
+            //secret part
+            if (asdpr && aempr)
+            {
+                if (Pwtcl.pwe(apema) == 65535)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Contact me with the code. I'll give you a gift.");
+                    Console.ResetColor();
+                }
+            }
+
             if (r < 0)
             {
                 if (!finish)
